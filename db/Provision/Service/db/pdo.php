@@ -54,10 +54,15 @@ class Provision_Service_db_pdo extends Provision_Service_db {
     catch (PDOException $e) {
       drush_log($e->getMessage(), 'warning');
       return FALSE;
-    } 
+    }
+
+    if (!$result) {
+      $error = [];
+      list($error['@sql_error'], $error['@driver_error'], $error['@error_message']) = $this->conn->errorInfo();
+      drush_log(dt('Database query returned: @sql_error[@driver_error]: @error_message', $error), 'notice');
+    }
 
     return $result;
-
   }
 
   function query_callback($match, $init = FALSE) {
