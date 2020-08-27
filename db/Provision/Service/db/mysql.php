@@ -25,7 +25,7 @@ class Provision_Service_db_mysql extends Provision_Service_db_pdo {
   }
 
   function can_create_database() {
-    $test = drush_get_option('aegir_db_prefix', 'site_') . 'test';
+    $test = drush_get_option('aegir_db_prefix', 'site_') . 'tmp_test';
     $this->create_database($test);
 
     if ($this->database_exists($test)) {
@@ -44,7 +44,7 @@ class Provision_Service_db_mysql extends Provision_Service_db_pdo {
    *   TRUE if the check was successful.
    */
   function can_grant_privileges() {
-    $dbname = drush_get_option('aegir_db_prefix', 'site_') . 'test';
+    $dbname = drush_get_option('aegir_db_prefix', 'site_') . 'tmp_test';
     $this->create_database($dbname);
 
     $user     = $dbname . '_user';
@@ -67,16 +67,26 @@ class Provision_Service_db_mysql extends Provision_Service_db_pdo {
     return $this->grant_privileges($name, $username, $password, $host);
   }
 
-  function create_user($username, $host, $password) {
-    $statement = "CREATE USER IF NOT EXISTS `%s`@`%s` IDENTIFIED BY '%s'";
+  function create_user($username, $host) {
+    $statement = "CREATE USER IF NOT EXISTS `%s`@`%s`";
+    return $this->query($statement, $username, $host);
+  }
+
+  function alter_user($username, $host, $password) {
+    $statement = "ALTER USER `%s`@`%s` IDENTIFIED BY '%s'";
     return $this->query($statement, $username, $host, $password);
   }
 
   function grant_privileges($name, $username, $password, $host) {
-    $user_created = $this->create_user($username, $host, $password);
+    $user_created = $this->create_user($username, $host);
+    $user_altered = $this->alter_user($username, $host, $password);
     if (!$user_created) {
-      drush_log('Failed to create database user.', 'error');
+      drush_log(dt("Failed to create db_user @name", array('@name' => $username)), 'error');
       return $user_created;
+    }
+    if (!$user_altered) {
+      drush_log(dt("Failed to alter db_user @name", array('@name' => $username)), 'error');
+      return $user_altered;
     }
 
     $statement = "GRANT ALL PRIVILEGES ON `%s`.* TO `%s`@`%s`";
