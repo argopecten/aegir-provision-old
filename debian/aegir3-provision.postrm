@@ -36,6 +36,11 @@ case "$1" in
         ucf --purge /etc/sudoers.d/aegir
         rm -f /etc/sudoers.d/aegir
 
+        # issue #2842473
+        # clean up files from hosting_tasks_extra module
+        rm -f /etc/sudoers.d/fix-drupal-*
+        rm -f /usr/local/bin/fix-drupal-*
+
         # unregister apache config
         ( rm /etc/apache/conf.d/aegir.conf > /dev/null 2>&1 && invoke-rc.d apache force-reload ) || true
         ( rm /etc/apache2/conf.d/aegir.conf > /dev/null 2>&1 && invoke-rc.d apache2 force-reload ) || true
@@ -58,5 +63,3 @@ esac
 #DEBHELPER#
 
 exit 0
-
-
