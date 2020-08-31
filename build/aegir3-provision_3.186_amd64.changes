@@ -1,0 +1,47 @@
+Format: 1.8
+Date: Thu, 18 Jun 2020 14:36:32 -0400
+Source: aegir3-provision
+Binary: aegir-archive-keyring aegir3 aegir3-cluster-slave aegir3-hostmaster aegir3-provision
+Architecture: source all
+Version: 3.186
+Distribution: testing
+Urgency: medium
+Maintainer: Herman van Rink <helmo@initfour.nl>
+Changed-By: Kienan Stewart <kienan@koumbit.org>
+Description:
+ aegir-archive-keyring - GnuPG archive keys for the Aegir hosting system
+ aegir3     - mass Drupal hosting system
+ aegir3-cluster-slave - mass Drupal hosting system - slave backend
+ aegir3-hostmaster - mass Drupal hosting system - frontend
+ aegir3-provision - mass Drupal hosting system - backend
+Changes:
+ aegir3-provision (3.186) testing; urgency=medium
+ .
+   * Include Drupal 7.72
+Checksums-Sha1:
+ 161f0525060882a8c6fab02dc15c2b1c1854237b 961 aegir3-provision_3.186.dsc
+ cf5fae93594d747f80d139330ec393772d7bff86 52432546 aegir3-provision_3.186.tar.gz
+ 193f17bfcc993c823864e3d7dff8875d37af5d3a 12240 aegir-archive-keyring_3.186_all.deb
+ eba842cfe27f828ac6a50cd0d64cc8a37069fe8d 11988 aegir3-cluster-slave_3.186_all.deb
+ f8bc098f998459dd0320404031b7fe28cee40a3b 16236 aegir3-hostmaster_3.186_all.deb
+ 3fbc6632926f2cf57d232a48fb8c37b87c4ef9f2 388988 aegir3-provision_3.186_all.deb
+ aa5f1c98c04a7b380a5369cd281ddc3debbe3526 5601 aegir3-provision_3.186_amd64.buildinfo
+ d275758d3af263223a1208b099070dbf855c31da 9564 aegir3_3.186_all.deb
+Checksums-Sha256:
+ 245e7c529347b8396f66cba0237331dbe92f02bde0801bbbb7aaaa6f60d73aaa 961 aegir3-provision_3.186.dsc
+ 4e31b7a18a88cb777d2d8a041c6daf8968b149bf71426ef60a5bf7cdc6f5cfc0 52432546 aegir3-provision_3.186.tar.gz
+ 3acd213efc4e91720e627e3d4d840bbf67768ef9e8b390cfdc45dfcca57a4a7b 12240 aegir-archive-keyring_3.186_all.deb
+ 0150a233edb7105f409623e91b46f9924caaa1400584bb9b0fb8e715be0d5414 11988 aegir3-cluster-slave_3.186_all.deb
+ 0910a137a0c875013c294b521ef78220a42330cd4390ad94a38a6b02c671eb0d 16236 aegir3-hostmaster_3.186_all.deb
+ dfd8ad34e0a3c7b4b4748716304c88dde33ba196f608ff2a9ef7f79c71b3530f 388988 aegir3-provision_3.186_all.deb
+ 8450a1a72dd7180eb3440b86a4d0cfe68c0e3a6f8470b4d89eca29d9334364aa 5601 aegir3-provision_3.186_amd64.buildinfo
+ 3d62d2f49225780c7cd5138e224bbd770aaacf845659142074c2b0d7142d8b14 9564 aegir3_3.186_all.deb
+Files:
+ 32f3ed8ad35315e1633e88f454ee39c0 961 admin optional aegir3-provision_3.186.dsc
+ 072068403b75aa783d0622b456180bff 52432546 admin optional aegir3-provision_3.186.tar.gz
+ 39473c501e14ee0d9b6738ada22a639a 12240 admin optional aegir-archive-keyring_3.186_all.deb
+ 7fe255a6250855c464f65e498b7c03ad 11988 admin optional aegir3-cluster-slave_3.186_all.deb
+ 79590bf8cb11b6cae78756fffa68a336 16236 admin optional aegir3-hostmaster_3.186_all.deb
+ 1e1f454c8f49892c207d3026cf73db22 388988 admin optional aegir3-provision_3.186_all.deb
+ bf58931cb1a87831b49e6859f042992c 5601 admin optional aegir3-provision_3.186_amd64.buildinfo
+ 81fa27d543207a5af20b4d623e75b88c 9564 admin optional aegir3_3.186_all.deb
