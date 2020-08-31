@@ -14,7 +14,9 @@ echo "debconf debconf/frontend select Noninteractive" | sudo debconf-set-selecti
 
 
 sudo apt-get install --yes mariadb-server-10.1
-sudo /usr/bin/mysql -e "GRANT ALL ON *.* TO 'aegir_root'@'localhost' IDENTIFIED BY 'PASSWORD' WITH GRANT OPTION"
+sudo /usr/bin/mysql -e "CREATE USER IF NOT EXISTS 'aegir_root'@'localhost'"
+sudo /usr/bin/mysql -e "ALTER USER 'aegir_root'@'localhost' IDENTIFIED BY 'PASSWORD'"
+sudo /usr/bin/mysql -e "GRANT ALL ON *.* TO 'aegir_root'@'localhost' WITH GRANT OPTION"
 
 
 sudo debconf-set-selections <<EOF
