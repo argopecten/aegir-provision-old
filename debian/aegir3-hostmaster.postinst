@@ -163,9 +163,12 @@ case "$1" in
               # Random password, will be stored in /var/aegir/.drush/server_localhost.alias.drushrc.php
               AEGIR_DB_PASS=$(openssl rand -base64 12)
 
-              /usr/bin/mysql -e "GRANT ALL ON *.* TO '$AEGIR_DB_USER'@'$AEGIR_DB_HOST' IDENTIFIED BY '$AEGIR_DB_PASS' WITH GRANT OPTION"
+              # user creation changed https://www.drupal.org/project/provision/issues/3145881
+              /usr/bin/mysql -e "CREATE USER IF NOT EXISTS '$AEGIR_DB_USER'@'$AEGIR_DB_HOST'"
+              /usr/bin/mysql -e "ALTER USER '$AEGIR_DB_USER'@'$AEGIR_DB_HOST' IDENTIFIED BY '$AEGIR_DB_PASS'"
+              /usr/bin/mysql -e "GRANT ALL ON *.* TO '$AEGIR_DB_USER'@'$AEGIR_DB_HOST' WITH GRANT OPTION"
             fi
-            
+
             if [ -d $AEGIRHOME/.drush/provision ]; then
                 echo "existing provision in $AEGIRHOME/.drush/provision detected, move away and try again"
                 exit 1
@@ -244,5 +247,3 @@ esac
 #DEBHELPER#
 
 exit 0
-
-
